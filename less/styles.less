@@ -1,0 +1,291 @@
+@main-color: #dd7676;
+
+//reset css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+//clear floats
+.clearfix {
+  &:after {
+    content: '';
+    clear: both; 
+    display: table;
+  }
+}
+
+//center elements
+.center-element {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  background-color: #edf0f1;
+}
+
+body, input, button {
+  font-family: 'Roboto', sans-serif;
+}
+
+//Styles for the input field
+header  {
+  width: 100%;
+  height: 80px;
+  padding: 15px;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  z-index: 100;
+  background-color: @main-color;
+  border-bottom-left-radius: 10px; 
+  border-bottom-right-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(44, 66, 88, 0.15);
+  input {
+    width: 100%;
+    height: 50px;
+    float: left;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 15px;
+    text-indent: 10px;
+    padding-left: 4px;
+    padding-right: 60px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: 0px;
+    box-shadow: none;
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none; 
+
+    &::-webkit-input-placeholder {
+      color: rgba(255, 255, 255, 0.75)
+    }
+    &::-moz-placeholder {
+      color: rgba(255, 255, 255, 0.75)
+    }
+    &::-ms-placeholder {
+      color: rgba(255, 255, 255, 0.75)
+    }
+  }
+  button {
+    width: 50px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 99;
+    height: 50px;
+    border-radius: 50%;
+    border: 0;
+    box-shadow: none;
+    outline: none;
+    background-color: #fff;
+    color: #fff;
+    cursor: pointer;
+
+    appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none; 
+    -webkit-appearance: none;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -8px 0 0 -8px;
+      .fill {
+        fill: @main-color;
+      }
+    }
+  }
+  // Validation tooltip
+  span {
+    display: none;
+    max-width: 80%;
+    background-color: #915b5b;
+    box-shadow: 0px 2px 4px rgba(44, 66, 88, 0.15);
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    z-index: 101;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 20px;
+      margin-left: -15px;
+      border-width: 5px;
+      border-style: solid;
+      border-color:  transparent transparent #915b5b transparent;
+    }
+  }
+}
+
+//Styles for the lists
+div.container {
+  margin-top: 80px;
+  padding: 15px;
+  ul.todo {
+    width: 100%;
+    float: left;
+    li {
+      width: 100%;
+      min-height: 50px;
+      position: relative;
+      float: left;
+      padding: 14px 100px 14px 14px;
+      background-color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      color: #444;
+      line-height: 22px;
+      border-radius: 5px;
+      box-shadow: 0px 1px 2px rgba(44, 66, 88, 0.10);
+      margin-bottom: 10px;
+      &:last-child{
+        margin-bottom: 0;
+      }
+      div.buttons {
+        width: 100px;
+        height: 50px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        button {
+          width: 22px;
+          height: 22px;
+          margin: 14px;
+          float: left;
+          position: relative;
+          border: 0;
+          border-radius: 5px;          
+          box-shadow: none;
+          outline: none;
+          background-color: #fff;
+          cursor: pointer;
+
+          appearance: none;
+          -moz-appearance: none;
+          -ms-appearance: none;
+          -o-appearance: none; 
+          -webkit-appearance: none;
+
+          &:last-child::before {
+            content: '';
+            width: 1px;
+            height: 30px;
+            position: absolute;
+            top: -4px;
+            left: -14px;
+            background-color: #edf0f1;          
+          }
+          svg {
+            width: 22px;
+            height: 22px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -11px 0 0 -11px;
+            .noFill {
+              fill: none;
+            }
+            .fill {
+              transition: fill 0.2s ease;
+              -moz-transition: fill 0.2s ease;
+              -ms-transition: fill 0.2s ease;
+              -o-transition: fill 0.2s ease;
+              -webkit-transition: fill 0.2s ease;
+            }
+            transition: background-color 0.2s ease;
+            -moz-transition: fill 0.2s ease;
+            -ms-transition: fill 0.2s ease;
+            -o-transition: fill 0.2s ease;
+            -webkit-transition: fill 0.2s ease;
+          }
+        }
+        button.remove svg {
+          .fill {
+            fill: #cec0c0;
+          }
+          &:hover {
+            .fill {
+              fill: rgb(199, 0, 0);
+            }
+          }
+        }
+        button.complete svg {
+          border-radius: 50%;
+          border: 1px solid @main-color;
+          .fill {
+            fill: @main-color;
+          }
+          &:hover {
+            background-color: @main-color;
+            opacity: 0.75;
+            .fill {
+              fill: #fff;
+            }
+          }
+       }
+      }
+    }
+  }
+  ul.todo#completed li .buttons button.complete svg {
+    background-color: @main-color;
+    .fill {
+      fill: #fff;
+    }
+  }
+  ul.todo#completed {
+    li{
+      color: rgba(68, 68, 68, 0.80);
+    }
+    padding: 60px 0 0 0;
+    position: relative;
+    &:before {
+      content: '';
+      width: 150px;
+      height: 1px;
+      background-color: #cec0c0;
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      margin: 0 0 0 -75px;
+    }
+    &:empty:after {
+      content: 'You have not completed any activities yet';
+      display: block;
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.4;
+    }
+  }
+  ul.todo#todo:empty:after {
+    content: 'You have nothing to do';
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.4;
+  }
+}
+
