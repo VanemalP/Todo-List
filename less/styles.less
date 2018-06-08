@@ -150,6 +150,7 @@ div.container {
     li {
       width: 100%;
       min-height: 50px;
+      border: 1px solid transparent;
       position: relative;
       float: left;
       padding: 14px 100px 14px 14px;
@@ -249,6 +250,13 @@ div.container {
        }
       }
     }
+    //Styles for sortable items
+    li.ui-sortable-handle:hover {
+      border: 1px solid #c4c4c4;
+    }
+    li.placeholder {
+      background-color: rgba(255, 213, 213, 0.3);
+    }
   }
   ul.todo#completed li .buttons button.complete svg {
     background-color: @main-color;
@@ -258,7 +266,7 @@ div.container {
   }
   ul.todo#completed {
     li{
-      color: rgba(68, 68, 68, 0.80);
+      color: rgba(68, 68, 68, 0.50);
     }
     padding: 60px 0 0 0;
     position: relative;
@@ -289,4 +297,3 @@ div.container {
     opacity: 0.4;
   }
 }
-

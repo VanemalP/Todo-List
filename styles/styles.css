@@ -134,6 +134,7 @@ div.container ul.todo {
 div.container ul.todo li {
   width: 100%;
   min-height: 50px;
+  border: 1px solid transparent;
   position: relative;
   float: left;
   padding: 14px 100px 14px 14px;
@@ -227,6 +228,12 @@ div.container ul.todo li div.buttons button.complete svg:hover {
 div.container ul.todo li div.buttons button.complete svg:hover .fill {
   fill: #fff;
 }
+div.container ul.todo li.ui-sortable-handle:hover {
+  border: 1px solid #c4c4c4;
+}
+div.container ul.todo li.placeholder {
+  background-color: rgba(255, 213, 213, 0.3);
+}
 div.container ul.todo#completed li .buttons button.complete svg {
   background-color: #dd7676;
 }
@@ -238,7 +245,7 @@ div.container ul.todo#completed {
   position: relative;
 }
 div.container ul.todo#completed li {
-  color: rgba(68, 68, 68, 0.8);
+  color: rgba(68, 68, 68, 0.5);
 }
 div.container ul.todo#completed:before {
   content: '';
