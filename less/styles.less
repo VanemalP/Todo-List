@@ -37,6 +37,7 @@ header  {
   width: 100%;
   height: 80px;
   padding: 15px;
+  .clearfix;
   position: fixed;
   top: 0%;
   left: 0%;
@@ -144,6 +145,7 @@ header  {
 div.container {
   margin-top: 80px;
   padding: 15px;
+  .clearfix;
   ul.todo {
     width: 100%;
     float: left;
@@ -153,7 +155,7 @@ div.container {
       border: 1px solid transparent;
       position: relative;
       float: left;
-      padding: 14px 100px 14px 14px;
+      padding: 14px 150px 14px 14px;
       background-color: #fff;
       font-size: 14px;
       font-weight: 500;
@@ -167,7 +169,7 @@ div.container {
       }
       overflow-wrap: break-word;
       div.buttons {
-        width: 100px;
+        width: 150px;
         height: 50px;
         position: absolute;
         top: 0;
@@ -200,6 +202,15 @@ div.container {
             left: -14px;
             background-color: #edf0f1;          
           }
+          &:first-child::after {
+            content: '';
+            width: 1px;
+            height: 30px;
+            position: absolute;
+            top: -4px;
+            right: -14px;
+            background-color: #edf0f1;          
+          }
           svg {
             width: 22px;
             height: 22px;
@@ -222,6 +233,17 @@ div.container {
             -ms-transition: fill 0.2s ease;
             -o-transition: fill 0.2s ease;
             -webkit-transition: fill 0.2s ease;
+          }
+        }
+        button.edit svg {
+          .fill {
+            fill: #cec0c0;
+          }
+          &:hover {
+            .fill {
+              fill: @main-color;
+              opacity: 0.75;
+            }
           }
         }
         button.remove svg {
@@ -258,15 +280,21 @@ div.container {
       background-color: rgba(255, 213, 213, 0.3);
     }
   }
-  ul.todo#completed li .buttons button.complete svg {
-    background-color: @main-color;
-    .fill {
-      fill: #fff;
-    }
-  }
   ul.todo#completed {
     li{
       color: rgba(68, 68, 68, 0.50);
+      padding-right: 100px;
+      text-decoration: line-through;
+      .buttons 
+        {
+          width: 100px;
+          button.complete svg {
+          background-color: @main-color;
+          .fill {
+            fill: #fff;
+          }
+        }
+      }
     }
     padding: 60px 0 0 0;
     position: relative;
