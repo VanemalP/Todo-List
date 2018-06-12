@@ -113,7 +113,7 @@ header  {
       }
     }
   }
-  // Validation tooltip
+  //Verifcation tooltip
   span {
     display: none;
     max-width: 80%;
@@ -285,8 +285,7 @@ div.container {
       color: rgba(68, 68, 68, 0.50);
       padding-right: 100px;
       text-decoration: line-through;
-      .buttons 
-        {
+      .buttons {
           width: 100px;
           button.complete svg {
           background-color: @main-color;
@@ -316,12 +315,45 @@ div.container {
       opacity: 0.4;
     }
   }
-  ul.todo#todo:empty:after {
-    content: 'You have nothing to do';
-    display: block;
-    margin-top: 15px;
-    text-align: center;
+  ul.todo#todo {
+    li {
+      position: relative;
+    }
+    &:empty:after {
+      content: 'You have nothing to do';
+      display: block;
+      margin-top: 15px;
+      text-align: center;
+      font-size: 12px;
+      opacity: 0.4;
+    }
+  }
+  //Verification for edited items
+  .li-popup-text {
+    display: none;
+    max-width: 80%;
+    background-color: #915b5b;
+    box-shadow: 0px 2px 4px rgba(44, 66, 88, 0.15);
+    color: #fff;
     font-size: 12px;
-    opacity: 0.4;
+    font-weight: 400;
+    line-height: 1rem;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    top: 55px;
+    left: 5px;
+    z-index: 101;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 20px;
+      margin-left: -15px;
+      border-width: 5px;
+      border-style: solid;
+      border-color:  transparent transparent #915b5b transparent;
+    }
   }
 }

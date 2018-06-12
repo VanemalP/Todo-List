@@ -31,6 +31,7 @@ function loadTodoList() {
       var value = dataTodo.completed[j];
       addItemTodo(value, true);
       $('#completed .edit').hide();
+      $('#completed .complete').prop('title', 'Redo activity');
     }
   }
 };
@@ -89,6 +90,7 @@ function completeItem() {
   if (listID == 'todo') {
     //todo activity to be completed
     target = $('#completed');
+    $(this).closest('.complete').prop('title', 'Redo activity');
    
     btnEdit.hide();
 
@@ -119,16 +121,19 @@ function  addItemTodo(text, completed) {
   var list = (completed) ? $('#completed'):$('#todo');
 
   var item =  list.prepend('<li></li>').children().eq(0).append('<span>' + text + '</span>');
+  item.children().addClass('content');
  
   var buttons = item.append('<div></div>').children().eq(1).addClass('buttons');
 
-  var edit = buttons.append('<button></button>').children().html(editSVG).addClass('edit');
+  var tooltip = item.append('<span></span>').children().eq(2).addClass('li-popup-text');
+
+  var edit = buttons.append('<button title="Edit activity"></button>').children().html(editSVG).addClass('edit');
   //Adds click event for editing items
   edit.click(editItem);
-  var remove = buttons.append('<button></button>').children().eq(1).html(removeSVG).addClass('remove');
+  var remove = buttons.append('<button title="Remove activity"></button>').children().eq(1).html(removeSVG).addClass('remove');
   //Adds click event for removing items
   remove.click(removeItem);
-  var complete = buttons.append('<button></button>').children().eq(2).html(completeSVG).addClass('complete');
+  var complete = buttons.append('<button title="Complete activity"></button>').children().eq(2).html(completeSVG).addClass('complete');
   //Adds click event for completing items
   complete.click(completeItem);
 };
@@ -152,7 +157,10 @@ function sortTodo() {
 };
 
 function editItem() {
-  var item = $(this).parent().parent().find('span');
+  var currentListItem = $(this).parent().parent();
+  var currentListItemIndex = currentListItem.index();
+  var item = currentListItem.find('.content');
+  var popup = currentListItem.find('.li-popup-text');
   var listItems = $("#todo").find('li');
   var btnEdit = $(this).closest('.edit');
   var value = item.text();
@@ -160,27 +168,60 @@ function editItem() {
   
   item.prop('contenteditable', true).focus();
   $(this).children().html(checkSVG);
+  btnEdit.prop('title', 'Done editting');
   $('#todo').sortable('disable');
   
   $(this).unbind('click').click(function() {
     var newValue = item.text();
-
+    
+    if (newValue.length == 0) {
+      $(popup).text('Please enter an activity').fadeIn(500).delay(1000).fadeOut(500);
+      item.eq(0).focus();
+      return false;
+    } else {
+      for (var i = 0; i < listItems.length; i++ ) {
+        if (i == currentListItemIndex) {
+          continue;
+        }
+        if ($(listItems[i]).text().trim() == newValue) {
+          $(popup).text('This activity is already in the list').fadeIn(500).delay(1000).fadeOut(500);
+          item.eq(0).focus();
+          return false;
+        }
+      }
+    } 
     item.prop('contenteditable', false);
-    btnEdit.html(editSVG);
+    btnEdit.html(editSVG).prop('title', 'Edit activity');
     btnEdit.click(editItem);
     dataTodo.todo.splice(index, 1, newValue);
     dataObjectUpdated();
     $('#todo').sortable('enable');
   });
   
-  item.keypress(function(e) {
+  item.unbind('keypress').keypress(function(e) {
     var newValue = item.text();
 
     if (e.which == 13) {
+      if (newValue.length == 0) {
+        $(popup).text('Please enter an activity').fadeIn(500).delay(1000).fadeOut(500);
+        item.eq(0).focus();
+        return false;
+      } else {
+        for (var i = 0; i < listItems.length; i++ ) {
+          if (i == currentListItemIndex) {
+            continue;
+          }
+          if ($(listItems[i]).text().trim() == newValue) {
+            $(popup).text('This activity is already in the list').fadeIn(500).delay(1000).fadeOut(500);
+            item.eq(0).focus();
+            return false;
+          }
+        }
+      } 
       item.prop('contenteditable', false);
-      btnEdit.html(editSVG);
+      btnEdit.html(editSVG).prop('title', 'Edit activity');
       btnEdit.click(editItem);
-      dataTodo.todo.splice(index, 1, newValue);
+      dataTodo.todo.splice(index, 1, newValue.trim());
       dataObjectUpdated();
       $('#todo').sortable('enable');
     };
