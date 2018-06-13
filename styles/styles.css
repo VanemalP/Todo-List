@@ -158,6 +158,9 @@ div.container ul.todo li {
   margin-bottom: 10px;
   overflow-wrap: break-word;
 }
+div.container ul.todo li span.content {
+  display: block;
+}
 div.container ul.todo li:last-child {
   margin-bottom: 0;
 }

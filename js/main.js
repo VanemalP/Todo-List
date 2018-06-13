@@ -129,7 +129,7 @@ function  addItemTodo(text, completed) {
 
   var edit = buttons.append('<button title="Edit activity"></button>').children().html(editSVG).addClass('edit');
   //Adds click event for editing items
-  edit.click(editItem);
+  edit.unbind('click').click(editItem);
   var remove = buttons.append('<button title="Remove activity"></button>').children().eq(1).html(removeSVG).addClass('remove');
   //Adds click event for removing items
   remove.click(removeItem);
@@ -162,18 +162,19 @@ function editItem() {
   var item = currentListItem.find('.content');
   var popup = currentListItem.find('.li-popup-text');
   var listItems = $("#todo").find('li');
-  var btnEdit = $(this).closest('.edit');
+  var btnEdit = $(this);
   var value = item.text();
   var index = dataTodo.todo.indexOf(value);
-  
+ 
   item.prop('contenteditable', true).focus();
-  $(this).children().html(checkSVG);
+  btnEdit.addClass('check').children().html(checkSVG);
   btnEdit.prop('title', 'Done editting');
   $('#todo').sortable('disable');
   
-  $(this).unbind('click').click(function() {
+  $('.check').unbind('click').click(function() {
     var newValue = item.text();
-    
+    $(popup).text('');
+
     if (newValue.length == 0) {
       $(popup).text('Please enter an activity').fadeIn(500).delay(1000).fadeOut(500);
       item.eq(0).focus();
@@ -191,8 +192,8 @@ function editItem() {
       }
     } 
     item.prop('contenteditable', false);
-    btnEdit.html(editSVG).prop('title', 'Edit activity');
-    btnEdit.click(editItem);
+    btnEdit.html(editSVG).prop('title', 'Edit activity').removeClass('check');
+    btnEdit.unbind('click').click(editItem);
     dataTodo.todo.splice(index, 1, newValue);
     dataObjectUpdated();
     $('#todo').sortable('enable');
@@ -200,7 +201,8 @@ function editItem() {
   
   item.unbind('keypress').keypress(function(e) {
     var newValue = item.text();
-
+    $(popup).text('');
+    
     if (e.which == 13) {
       if (newValue.length == 0) {
         $(popup).text('Please enter an activity').fadeIn(500).delay(1000).fadeOut(500);
@@ -219,8 +221,8 @@ function editItem() {
         }
       } 
       item.prop('contenteditable', false);
-      btnEdit.html(editSVG).prop('title', 'Edit activity');
-      btnEdit.click(editItem);
+      btnEdit.html(editSVG).prop('title', 'Edit activity').removeClass('check');
+      btnEdit.unbind('click').click(editItem);
       dataTodo.todo.splice(index, 1, newValue.trim());
       dataObjectUpdated();
       $('#todo').sortable('enable');
