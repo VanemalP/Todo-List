@@ -5,11 +5,14 @@
   text-decoration: none;
   list-style: none;
 }
-.clearfix:after {
-  content: '';
-  clear: both;
-  display: table;
+.clearfix {
+	&:after {
+		content: '';
+		clear: both;
+		display: table;
+	}
 }
+
 .center-element {
   margin-left: auto;
   margin-right: auto;
@@ -300,6 +303,7 @@ div.container ul.todo#completed:empty:after {
 }
 div.container ul.todo#todo li {
   position: relative;
+  cursor: grab;
 }
 div.container ul.todo#todo:empty:after {
   content: 'You have nothing to do';
