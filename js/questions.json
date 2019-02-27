@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What is my name?",
+    "answer1": "Penka",
+    "answer2": "Boryana",
+    "answer3": "Plamena",
+    "answer4": "Mariya",
+    "correctAnswer": 3
+  },
+  {
+    "question": "What are my pet's names?",
+    "answer1": "Kotka & Kotiyo",
+    "answer2": "Maca & Macko",
+    "answer3": "Betty & Boyan",
+    "answer4": "Pipi & Bobo",
+    "correctAnswer": 4
+  },
+  {
+    "question": "Where do I live?",
+    "answer1": "Mladost",
+    "answer2": "Obelya",
+    "answer3": "Manastirski Livadi",
+    "answer4": "Boyana",
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is my eyes' color?",
+    "answer1": "Blue",
+    "answer2": "Green",
+    "answer3": "Brown",
+    "answer4": "Grey",
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is my shoe size",
+    "answer1": 37,
+    "answer2": 38,
+    "answer3": 39,
+    "answer4": 40,
+    "correctAnswer": 4
+  }
+]
